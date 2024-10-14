@@ -1,0 +1,38 @@
+<template>
+  <section>
+    <base-card>
+      <template v-slot:header>
+        <h2>Available Badges</h2>
+      </template>
+      <template v-slot:section>
+        <ul>
+          <li>
+            <base-badge type="admin" caption="ADMIN"></base-badge>
+          </li>
+          <li>
+            <base-badge type="author" caption="AUTHOR"></base-badge>
+          </li>
+        </ul>
+      </template>
+    </base-card>
+  </section>
+</template>
+
+<style scoped>
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+li {
+  margin-right: 1rem;
+}
+</style>
+<script setup>
+import BaseBadge from "@/components/UI/BaseBadge.vue";
+import BaseCard from "@/components/UI/BaseCard.vue";
+</script>

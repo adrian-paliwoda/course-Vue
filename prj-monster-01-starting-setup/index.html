@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Vue Basics</title>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css"/>
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+<header>
+    <h1>Monster Slayer</h1>
+</header>
+<div id="game">
+    <section id="monster" class="container">
+        <h2>Monster Health</h2>
+        <div class="healthbar">
+            <div class="healthbar__value" :style="{width: this.monsterHealthValue}"></div>
+        </div>
+    </section>
+    <section id="player" class="container">
+        <h2>Your Health</h2>
+        <div class="healthbar">
+            <div class="healthbar__value" :style="{width: this.playerHealthValue }"></div>
+        </div>
+    </section>
+    <section v-show="isGameOver" class="container">
+        <h2>Game Over!</h2>
+        <h3>{{ endMessage }}</h3>
+        <button @click="reset">Reset Game</button>
+    </section>
+    <section id="controls">
+        <button @click="onAttack" :disabled="isGameOver">ATTACK</button>
+        <button @click="onSpecialAttack" :disabled="isSpecialAttackAvailable">SPECIAL ATTACK</button>
+        <button @click="onHeal" :disabled="isGameOver">HEAL</button>
+        <button @click="onSurrender" :disabled="isGameOver">SURRENDER</button>
+    </section>
+    <section id="log"
+             class="container"
+             v-show="logs.length > 0">
+        <h2>Battle Log</h2>
+        <ul>
+            <li v-for="(log, index) in logs" :key="log">
+                <span :class="{'log--player': log.actionBy === this.player, 'log--monster': log.actionBy === this.monster}" >
+                    {{log.actionBy === this.player ? 'Player' : 'Monster'}}</span>
+                <span v-if="log.actionType === 'heal'"> heals himself for <span class="log--heal">{{log.actionValue}}</span> </span>
+                <span v-else> attacks and deals<span class="log--damage"></span>{{log.actionValue}}</span>
+            </li>
+        </ul>
+    </section>
+</div>
+</body>
+</html>
