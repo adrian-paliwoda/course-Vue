@@ -9,3 +9,12 @@ Code is based on "Vue - The Complete Guide" course
 - JavaScript
 - Vue
 - Vuex
+
+
+# Example app
+
+## Coach app
+
+The application was created to find a coach to learn programming. You can be a trainer or a student. You can check what kind of students the trainer has
+
+![Main view](./screenshots/coach.png)
